@@ -1,6 +1,5 @@
 *{
   margin: 0;padding: 0;box-sizing: border-box;
-  list-style: none;
 }
 body {
   display: flex;
@@ -35,7 +34,7 @@ code {
   align-items: center;
   justify-content:center;
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   width:80%;
   max-width: 600px;
   height: 300px;
@@ -63,4 +62,22 @@ button{
 button:hover{
   color: black;
   background:rgba(200,200,200,.5);
+}
+.mic{
+  font-size:25px;
+
+}
+.notes{
+  padding:15px;
+  justify-content:start;
+  align-items:start;
+}
+.note{
+  padding-top:3px;
+  width:100%;
+  border-top:2px solid rgba(0, 0, 0, 0.5);
+}
+.default{
+  font-size:14px;
+  color:rgba(0,0,0,0.5)
 }

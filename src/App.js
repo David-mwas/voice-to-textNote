@@ -1,5 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  import {
+    faMicrophone,
+    faMicrophoneSlash,
+  } from "@fortawesome/free-solid-svg-icons";
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const mic = new SpeechRecognition();
@@ -52,24 +57,37 @@ function App() {
   return (
     <>
       <div className="container">
-      <h1>Voice Notes</h1>
+        <h1>Voice Notes</h1>
         <div className="box">
           <h2>Current note</h2>
-          {isListening ? <span>listening</span>: <span>notlistening</span>}
-          <button id="top"
+          {isListening ? <span>listening...</span> : <span>mic is off</span>}
+          <button
+            id="top"
             onClick={() => {
-              setIslistening(prevState => !prevState)
+              setIslistening((prevState) => !prevState);
             }}
-          >Start/Stop</button>
-          <button onClick={handleSaveNote} disabled={!note}>Save Note</button>
-          <p>{note}</p>
+          >
+            {isListening ? (
+              <FontAwesomeIcon icon={faMicrophone} className="mic" />
+            ) : (
+              <FontAwesomeIcon icon={faMicrophoneSlash} className="mic" />
+            )}
+          </button>
+          <button onClick={handleSaveNote} disabled={!note}>
+            Save Note
+          </button>
+          <p className="note">
+            {note ? note : <span className="default">Text will display here when you talk</span>}
+          </p>
         </div>
 
-        <div className="box">
+        <div className="box notes">
           <h2>Notes</h2>
-          {savedNotes.map((n) => (
-            <p key={n}>{n}</p>
-          ))}
+          <ul>
+            {savedNotes.map((n) => (
+              <li key={n}>{n}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
